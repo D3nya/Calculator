@@ -1,8 +1,8 @@
 using Calculator.Domain.UseCases.CalculateSum;
 
-namespace Services.CalculateSum;
+namespace Calculator.Services.CalculateSum;
 
-public class CalculateSumService : ICalculateSumService
+internal class CalculateSumService : ICalculateSumService
 {
     public double CalculateSum(double a, double b) => a + b;
 }

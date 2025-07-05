@@ -1,12 +1,14 @@
-using Calculator.Domain.UseCases.CalculateSum;
-using Services.CalculateSum;
+using Calculator.Domain.DependencyInjection;
+using Calculator.Services.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services
+    .AddCalculatorDomain()
+    .AddCalculatorServices();
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddScoped<ICalculateSumService, CalculateSumService>();
-builder.Services.AddScoped<ICalculateSumUseCase, CalculateSumUseCase>();
 
 var app = builder.Build();
 
