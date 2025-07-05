@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6"/>
+      <ProjectReference Include="..\Calculator.Domain\Calculator.Domain.csproj" />
+      <ProjectReference Include="..\Services\Services.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Calculator.Domain\Calculator.Domain.csproj" />
-      <ProjectReference Include="..\Services\Services.csproj" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
     </ItemGroup>
 
 </Project>
