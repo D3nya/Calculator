@@ -2,5 +2,5 @@ namespace Calculator.Domain.UseCases.CalculateSum;
 
 public interface ICalculateSumUseCase
 {
-    double Execute(CalculateSumQuery query);
+    Task<double> Execute(CalculateSumQuery query, CancellationToken cancellationToken);
 }

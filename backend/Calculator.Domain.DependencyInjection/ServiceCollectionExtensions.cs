@@ -1,4 +1,5 @@
 using Calculator.Domain.UseCases.CalculateSum;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Calculator.Domain.DependencyInjection;
@@ -9,6 +10,9 @@ public static class ServiceCollectionExtensions
     {
         services
             .AddScoped<ICalculateSumUseCase, CalculateSumUseCase>();
+
+        services
+            .AddValidatorsFromAssemblyContaining<CalculateSumQueryValidator>();
         
         return services;
     }

@@ -1,7 +1,13 @@
+using FluentValidation;
+
 namespace Calculator.Domain.UseCases.CalculateSum;
 
-internal class CalculateSumUseCase(ICalculateSumService calculateSumService) : ICalculateSumUseCase
+internal class CalculateSumUseCase(ICalculateSumService calculateSumService, IValidator<CalculateSumQuery> validator) : ICalculateSumUseCase
 {
-    public double Execute(CalculateSumQuery query) => 
-        calculateSumService.CalculateSum(query.A, query.B);
+    public async Task<double> Execute(CalculateSumQuery query, CancellationToken cancellationToken)
+    {
+        await validator.ValidateAndThrowAsync(query, cancellationToken);
+        return calculateSumService.CalculateSum(query.A, query.B);
+    }
+        
 }

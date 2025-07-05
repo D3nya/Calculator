@@ -9,10 +9,10 @@ namespace Calculator.API.Controllers;
 public class CalculatorController : ControllerBase
 {
     [HttpPost("sum")]
-    public IActionResult Sum([FromBody] CalculateSum request, [FromServices] ICalculateSumUseCase useCase)
+    public async Task<IActionResult> Sum([FromBody] CalculateSum request, [FromServices] ICalculateSumUseCase useCase, CancellationToken cancellationToken)
     {
         var query = new CalculateSumQuery(request.A, request.B);
-        var sum =  useCase.Execute(query);
+        var sum = await  useCase.Execute(query, cancellationToken);
         return Ok(sum);
     }
 }
