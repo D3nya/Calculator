@@ -1,3 +1,4 @@
+using Calculator.API.Filters;
 using Calculator.API.Middlewares;
 using Calculator.Domain.DependencyInjection;
 using Calculator.Services.DependencyInjection;
@@ -8,10 +9,18 @@ builder.Services
     .AddCalculatorDomain()
     .AddCalculatorServices();
 
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<LoggingFilter>();
+    options.Filters.Add<TimingFilter>();
+});
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
@@ -22,8 +31,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
-app
-    .UseMiddleware<ErrorHandlingMiddleware>();
 
 app.Run();
