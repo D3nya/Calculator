@@ -1,3 +1,4 @@
+using Calculator.API.Middlewares;
 using Calculator.Domain.DependencyInjection;
 using Calculator.Services.DependencyInjection;
 
@@ -21,5 +22,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app
+    .UseMiddleware<ErrorHandlingMiddleware>();
 
 app.Run();

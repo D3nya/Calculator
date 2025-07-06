@@ -9,5 +9,4 @@ internal class CalculateSumUseCase(ICalculateSumService calculateSumService, IVa
         await validator.ValidateAndThrowAsync(query, cancellationToken);
         return calculateSumService.CalculateSum(query.A, query.B);
     }
-        
 }
