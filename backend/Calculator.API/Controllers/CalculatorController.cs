@@ -2,6 +2,7 @@ using Calculator.API.Models;
 using Calculator.Domain.UseCases.CalculateDivide;
 using Calculator.Domain.UseCases.CalculateMultiply;
 using Calculator.Domain.UseCases.CalculatePow;
+using Calculator.Domain.UseCases.CalculateSqrt;
 using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ public class CalculatorController : ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(422)]
     [ProducesResponseType(200)]
-    public async Task<IActionResult> Sum([FromBody] CalculateSum request, [FromServices] ICalculateSumUseCase useCase, CancellationToken cancellationToken)
+    public async Task<IActionResult> Sum([FromBody] CalculateSum request, [FromServices] ICalculateSumUseCase useCase,
+        CancellationToken cancellationToken)
     {
         var query = new CalculateSumQuery(request.A, request.B);
         var sum = await useCase.Execute(query, cancellationToken);
@@ -70,5 +72,16 @@ public class CalculatorController : ControllerBase
         var pow = await useCase.Execute(query, cancellationToken);
         return Ok(pow);
     }
-    
+
+    [HttpPost("sqrt")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(422)]
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> Sqrt([FromBody] CalculateSqrt request,
+        [FromServices] ICalculateSqrtUseCase useCase, CancellationToken cancellationToken)
+    {
+        var query = new CalculateSqrtQuery(request.A, request.B);
+        var sqrt = await useCase.Execute(query, cancellationToken);
+        return Ok(sqrt);
+    }
 }

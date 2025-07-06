@@ -1,6 +1,7 @@
 using Calculator.Domain.UseCases.CalculateDivide;
 using Calculator.Domain.UseCases.CalculateMultiply;
 using Calculator.Domain.UseCases.CalculatePow;
+using Calculator.Domain.UseCases.CalculateSqrt;
 using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
 using FluentValidation;
@@ -17,7 +18,8 @@ public static class ServiceCollectionExtensions
             .AddScoped<ICalculateSubtractUseCase, CalculateSubtractUseCase>()
             .AddScoped<ICalculateMultiplyUseCase, CalculateMultiplyUseCase>()
             .AddScoped<ICalculateDivideUseCase, CalculateDivideUseCase>()
-            .AddScoped<ICalculatePowUseCase, CalculatePowUseCase>();
+            .AddScoped<ICalculatePowUseCase, CalculatePowUseCase>()
+            .AddScoped<ICalculateSqrtUseCase, CalculateSqrtUseCase>();
 
         services
             .AddValidatorsFromAssemblyContaining<CalculateSumQueryValidator>();
