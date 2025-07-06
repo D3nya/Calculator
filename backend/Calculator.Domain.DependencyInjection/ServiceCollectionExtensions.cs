@@ -1,3 +1,4 @@
+using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +10,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddCalculatorDomain(this IServiceCollection services)
     {
         services
-            .AddScoped<ICalculateSumUseCase, CalculateSumUseCase>();
+            .AddScoped<ICalculateSumUseCase, CalculateSumUseCase>()
+            .AddScoped<ICalculateSubtractUseCase, CalculateSubtractUseCase>();
 
         services
             .AddValidatorsFromAssemblyContaining<CalculateSumQueryValidator>();
