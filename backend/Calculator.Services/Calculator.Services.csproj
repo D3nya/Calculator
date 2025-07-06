@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Calculator.Domain\Calculator.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="NCalcSync" Version="5.4.2" />
+    </ItemGroup>
+
 </Project>

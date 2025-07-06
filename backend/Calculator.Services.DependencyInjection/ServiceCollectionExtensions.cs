@@ -13,6 +13,7 @@ using Calculator.Services.CalculateSqrt;
 using Calculator.Services.CalculateSubtract;
 using Calculator.Services.CalculateSum;
 using Microsoft.Extensions.DependencyInjection;
+using NCalc.DependencyInjection;
 
 namespace Calculator.Services.DependencyInjection;
 
@@ -28,6 +29,9 @@ public static class ServiceCollectionExtensions
             .AddScoped<ICalculatePowService, CalculatePowService>()
             .AddScoped<ICalculateSqrtService, CalculateSqrtService>()
             .AddScoped<ICalculateExpressionService, CalculateExpressionService>();
+
+        services
+            .AddNCalc();
         
         return services;
     }

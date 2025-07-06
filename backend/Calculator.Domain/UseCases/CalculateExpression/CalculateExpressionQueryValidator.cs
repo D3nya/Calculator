@@ -15,7 +15,8 @@ public partial class CalculateExpressionQueryValidator : AbstractValidator<Calcu
             .Must(HaveBalancedParentheses).WithErrorCode(ValidationErrorCode.Invalid);
     }
     
-    [GeneratedRegex(@"^[0-9+\-*/^().\s]+$")]
+    // 0-9, +, -, *, /, %, (), **, sqrt, abs, cos, sin, tan, ln, log, pow, exp
+    [GeneratedRegex(@"^([0-9+\-*/%().,\s]|\*\*|sqrt|abs|cos|sin|tan|ln|log|pow|exp)+$")]
     private static partial Regex ExpressionRegex();
     
     private static bool BeValidCharacters(string expression)
