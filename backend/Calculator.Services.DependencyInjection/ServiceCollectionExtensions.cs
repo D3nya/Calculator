@@ -1,9 +1,11 @@
 using Calculator.Domain.UseCases.CalculateDivide;
 using Calculator.Domain.UseCases.CalculateMultiply;
+using Calculator.Domain.UseCases.CalculatePow;
 using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
 using Calculator.Services.CalculateDivide;
 using Calculator.Services.CalculateMultiply;
+using Calculator.Services.CalculatePow;
 using Calculator.Services.CalculateSubtract;
 using Calculator.Services.CalculateSum;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +20,8 @@ public static class ServiceCollectionExtensions
             .AddScoped<ICalculateSumService, CalculateSumService>()
             .AddScoped<ICalculateSubtractService, CalculateSubtractService>()
             .AddScoped<ICalculateMultiplyService, CalculateMultiplyService>()
-            .AddScoped<ICalculateDivideService, CalculateDivideService>();
+            .AddScoped<ICalculateDivideService, CalculateDivideService>()
+            .AddScoped<ICalculatePowService, CalculatePowService>();
         
         return services;
     }
