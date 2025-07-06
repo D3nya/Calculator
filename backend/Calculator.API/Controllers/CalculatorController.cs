@@ -1,5 +1,6 @@
 using Calculator.API.Models;
 using Calculator.Domain.UseCases.CalculateDivide;
+using Calculator.Domain.UseCases.CalculateExpression;
 using Calculator.Domain.UseCases.CalculateMultiply;
 using Calculator.Domain.UseCases.CalculatePow;
 using Calculator.Domain.UseCases.CalculateSqrt;
@@ -83,5 +84,17 @@ public class CalculatorController : ControllerBase
         var query = new CalculateSqrtQuery(request.A, request.B);
         var sqrt = await useCase.Execute(query, cancellationToken);
         return Ok(sqrt);
+    }
+
+    [HttpPost("expression")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(422)]
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> Expression([FromBody] CalculateExpression request,
+        [FromServices] ICalculateExpressionUseCase useCase, CancellationToken cancellationToken)
+    {
+        var query = new CalculateExpressionQuery(request.Expression);
+        var result = await useCase.Execute(query, cancellationToken);
+        return Ok(result);
     }
 }
