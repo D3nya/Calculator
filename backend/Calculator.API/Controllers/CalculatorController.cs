@@ -1,4 +1,5 @@
 using Calculator.API.Models;
+using Calculator.Domain.UseCases.CalculateMultiply;
 using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
 using Microsoft.AspNetCore.Mvc;
@@ -30,5 +31,17 @@ public class CalculatorController : ControllerBase
         var query = new CalculateSubtractQuery(request.A, request.B);
         var subtract = await useCase.Execute(query, cancellationToken);
         return Ok(subtract);
+    }
+
+    [HttpPost("multiply")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(422)]
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> Multiply([FromBody] CalculateMultiply request,
+        [FromServices] ICalculateMultiplyUseCase useCase, CancellationToken cancellationToken)
+    {
+        var query = new CalculateMultiplyQuery(request.A, request.B);
+        var multiply = await useCase.Execute(query, cancellationToken);
+        return Ok(multiply);
     }
 }

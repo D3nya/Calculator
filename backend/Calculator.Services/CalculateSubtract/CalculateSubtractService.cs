@@ -3,7 +3,7 @@ using Calculator.Domain.UseCases.CalculateSubtract;
 
 namespace Calculator.Services.CalculateSubtract;
 
-public class CalculateSubtractService :  ICalculateSubtractService
+internal class CalculateSubtractService :  ICalculateSubtractService
 {
     public double CalculateSubtract(double a, double b)
     {

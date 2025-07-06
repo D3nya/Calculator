@@ -1,5 +1,7 @@
+using Calculator.Domain.UseCases.CalculateMultiply;
 using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
+using Calculator.Services.CalculateMultiply;
 using Calculator.Services.CalculateSubtract;
 using Calculator.Services.CalculateSum;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +14,8 @@ public static class ServiceCollectionExtensions
     {
         services
             .AddScoped<ICalculateSumService, CalculateSumService>()
-            .AddScoped<ICalculateSubtractService, CalculateSubtractService>();
+            .AddScoped<ICalculateSubtractService, CalculateSubtractService>()
+            .AddScoped<ICalculateMultiplyService, CalculateMultiplyService>();
         
         return services;
     }

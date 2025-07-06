@@ -26,6 +26,7 @@ public static class ProblemDetailsFactoryExtensions
         factory.CreateProblemDetails(httpContext,
             domainException.DomainErrorCode switch
             {
+                DomainErrorCode.UnprocessableEntity => StatusCodes.Status422UnprocessableEntity,
                 _ => StatusCodes.Status500InternalServerError
             },
             domainException.Message);
