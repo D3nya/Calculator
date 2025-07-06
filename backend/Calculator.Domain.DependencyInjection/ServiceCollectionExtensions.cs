@@ -1,3 +1,4 @@
+using Calculator.Domain.UseCases.CalculateDivide;
 using Calculator.Domain.UseCases.CalculateMultiply;
 using Calculator.Domain.UseCases.CalculateSubtract;
 using Calculator.Domain.UseCases.CalculateSum;
@@ -13,7 +14,8 @@ public static class ServiceCollectionExtensions
         services
             .AddScoped<ICalculateSumUseCase, CalculateSumUseCase>()
             .AddScoped<ICalculateSubtractUseCase, CalculateSubtractUseCase>()
-            .AddScoped<ICalculateMultiplyUseCase, CalculateMultiplyUseCase>();
+            .AddScoped<ICalculateMultiplyUseCase, CalculateMultiplyUseCase>()
+            .AddScoped<ICalculateDivideUseCase, CalculateDivideUseCase>();
 
         services
             .AddValidatorsFromAssemblyContaining<CalculateSumQueryValidator>();
