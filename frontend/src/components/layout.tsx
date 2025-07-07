@@ -5,6 +5,7 @@ import { Header } from "@/components/header/header";
 import { Outlet } from "react-router";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 export default function Layout() {
   return (
@@ -21,7 +22,9 @@ export default function Layout() {
                 </div>
               }
             >
-              <Outlet />
+              <ErrorBoundary>
+                <Outlet />
+              </ErrorBoundary>
             </Suspense>
           </main>
         </SidebarInset>
