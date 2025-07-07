@@ -1,49 +1,21 @@
+import { calculateExpression } from "@/api/calculateExpression";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 export const ExpressionPage: React.FC = () => {
   const [expression, setExpression] = useState("");
-  const [result, setResult] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleCalculate = async () => {
-    if (!expression.trim()) {
-      setError("Enter an expression to calculate");
-      setResult(null);
-      return;
-    }
+  const mutation = useMutation<number, Error, string>({
+    mutationFn: calculateExpression,
+  });
 
-    setLoading(true);
-    setError(null);
-    setResult(null);
-
-    try {
-      const res = await fetch("http://localhost:5280/calculator/expression", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ expression }),
-      });
-
-      if (!res.ok) {
-        const { message } = await res.json();
-        throw new Error(message || "Error calculating expression");
-      }
-
-      const data = await res.json();
-      setResult(data);
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        setError(e.message);
-      } else {
-        setError("An unexpected error occurred");
-      }
-    } finally {
-      setLoading(false);
-    }
+  const handleSubmit = () => {
+    if (!expression.trim()) return;
+    mutation.mutate(expression);
   };
 
   return (
@@ -62,12 +34,14 @@ export const ExpressionPage: React.FC = () => {
             placeholder="Example: 5 + 2 * (3 ^ 2)"
           />
 
-          {result !== null && <div className="text-center text-green-600 font-semibold">Result: {result}</div>}
-          {error && <div className="text-center text-red-600 font-semibold">{error}</div>}
+          {mutation.isSuccess !== null && (
+            <div className="text-center text-green-600 font-semibold">Result: {mutation.data}</div>
+          )}
+          {mutation.isError && <div className="text-center text-red-600 font-semibold">{mutation.error.message}</div>}
         </CardContent>
         <CardFooter>
-          <Button onClick={handleCalculate} disabled={loading} className="w-full">
-            {loading ? "Calculating..." : "Calculate"}
+          <Button onClick={handleSubmit} disabled={mutation.isPending} className="w-full">
+            {mutation.isPending ? "Calculating..." : "Calculate"}
           </Button>
         </CardFooter>
       </Card>
