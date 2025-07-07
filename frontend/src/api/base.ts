@@ -8,7 +8,7 @@ export async function apiFetch<T>(endpoint: string, options?: RequestInit): Prom
 
   if (!res.ok) {
     const { message } = await res.json().catch(() => ({}));
-    throw new Error(message || `API Error: ${res.status}`);
+    throw new Error(message || `API Error: ${res.status}. Message: ${res.statusText}`);
   }
 
   return res.json();
