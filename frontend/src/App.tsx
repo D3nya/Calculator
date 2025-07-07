@@ -1,17 +1,18 @@
 import Layout from "@/components/layout";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { ExpressionPage } from "@/pages/expression/expression-page";
 import { ROUTES } from "@/config/routes";
-import { SumPage } from "@/pages/sum-page";
-import { SubtractPage } from "@/pages/subtract-page";
-import { MultiplyPage } from "@/pages/multiply-page";
-import { DividePage } from "@/pages/divide-page";
-import { PowPage } from "@/pages/pow-page";
-import { SqrtPage } from "@/pages/sqrt-page";
-import { HomePage } from "@/pages/home-page";
-import { NotFoundPage } from "@/pages/not-found-page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { lazy } from "react";
+const HomePage = lazy(() => import("@/pages/home-page"));
+const ExpressionPage = lazy(() => import("@/pages/expression/expression-page"));
+const SumPage = lazy(() => import("@/pages/sum-page"));
+const SubtractPage = lazy(() => import("@/pages/subtract-page"));
+const MultiplyPage = lazy(() => import("@/pages/multiply-page"));
+const DividePage = lazy(() => import("@/pages/divide-page"));
+const PowPage = lazy(() => import("@/pages/pow-page"));
+const SqrtPage = lazy(() => import("@/pages/sqrt-page"));
+const NotFoundPage = lazy(() => import("@/pages/not-found-page"));
 
 function App() {
   const queryClient = new QueryClient();

@@ -20,7 +20,7 @@ const CardDescriptionItems = [
   { title: "Commas", code: "," },
 ];
 
-export const ExpressionPage: React.FC = () => {
+const ExpressionPage: React.FC = () => {
   const mutation = useMutation<number, Error, string>({
     mutationFn: calculateExpression,
   });
@@ -111,3 +111,5 @@ export const ExpressionPage: React.FC = () => {
     </section>
   );
 };
+
+export default ExpressionPage;

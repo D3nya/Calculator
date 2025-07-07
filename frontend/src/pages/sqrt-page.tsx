@@ -1,5 +1,7 @@
 import React from "react";
 
-export const SqrtPage: React.FC = () => {
+const SqrtPage: React.FC = () => {
   return <div>Sqrt page</div>;
 };
+
+export default SqrtPage;
