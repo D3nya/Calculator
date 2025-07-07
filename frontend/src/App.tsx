@@ -4,7 +4,8 @@ import { ROUTES } from "@/config/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { lazy } from "react";
-const HomePage = lazy(() => import("@/pages/home-page"));
+import { AutoScrollToTop } from "@/components/auto-scroll-to-top";
+const HomePage = lazy(() => import("@/pages/home/home-page"));
 const ExpressionPage = lazy(() => import("@/pages/expression/expression-page"));
 const SumPage = lazy(() => import("@/pages/sum-page"));
 const SubtractPage = lazy(() => import("@/pages/subtract-page"));
@@ -20,6 +21,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <AutoScrollToTop />
         <Routes>
           <Route element={<Layout />}>
             <Route path={ROUTES.appRoute} element={<HomePage />} />
