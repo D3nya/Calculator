@@ -1,6 +1,6 @@
 import Layout from "@/components/layout";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { ExpressionPage } from "@/pages/expression-page";
+import { ExpressionPage } from "@/pages/expression/expression-page";
 import { ROUTES } from "@/config/routes";
 import { SumPage } from "@/pages/sum-page";
 import { SubtractPage } from "@/pages/subtract-page";
